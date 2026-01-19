@@ -109,6 +109,56 @@ function drawTick(text, x, y, align="center", baseline="top") {
   ctx.restore();
 }
 
+  function drawValueTicksVertical(xAxis, y0, scaleVal) {
+  // For sin(θ): vertical axis ticks from -1 to +1
+  ctx.strokeStyle = "#9bb6e0";
+  ctx.fillStyle = "#0a2540";
+  ctx.lineWidth = 1;
+  ctx.font = "12px system-ui, sans-serif";
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+
+  for (let v = -1.0; v <= 1.0001; v += 0.1) {
+    const y = y0 - v * scaleVal;
+    const major = Math.abs(v % 0.5) < 1e-6 || Math.abs(v) < 1e-6 || Math.abs(Math.abs(v) - 1) < 1e-6;
+    const tickLen = major ? 8 : 4;
+
+    ctx.beginPath();
+    ctx.moveTo(xAxis - tickLen, y);
+    ctx.lineTo(xAxis + tickLen, y);
+    ctx.stroke();
+
+    if (major) {
+      ctx.fillText(v.toFixed(1).replace("-0.0","0.0"), xAxis - tickLen - 4, y);
+    }
+  }
+}
+
+function drawValueTicksHorizontal(x0, yAxis, scaleVal) {
+  // For rotated cos(θ): horizontal axis ticks from -1 to +1
+  ctx.strokeStyle = "#9bb6e0";
+  ctx.fillStyle = "#0a2540";
+  ctx.lineWidth = 1;
+  ctx.font = "12px system-ui, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+
+  for (let v = -1.0; v <= 1.0001; v += 0.1) {
+    const x = x0 + v * scaleVal;
+    const major = Math.abs(v % 0.5) < 1e-6 || Math.abs(v) < 1e-6 || Math.abs(Math.abs(v) - 1) < 1e-6;
+    const tickLen = major ? 8 : 4;
+
+    ctx.beginPath();
+    ctx.moveTo(x, yAxis - tickLen);
+    ctx.lineTo(x, yAxis + tickLen);
+    ctx.stroke();
+
+    if (major) {
+      ctx.fillText(v.toFixed(1).replace("-0.0","0.0"), x, yAxis + tickLen + 2);
+    }
+  }
+}
+
 function drawAxesCircle() {
   ctx.strokeStyle = "#9bb6e0";
   ctx.lineWidth = 1;
