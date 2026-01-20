@@ -68,8 +68,6 @@
 <div id="info"></div>
 
 <script>
-  alert("JS started");
-
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 const info = document.getElementById("info");
@@ -303,12 +301,7 @@ function draw() {
 
   const x = Math.cos(theta);
   const y = Math.sin(theta);
-  let tanText;
-if (Math.abs(x) < 1e-6) {
-  tanText = "undefined";
-} else {
-  tanText = (y / x).toFixed(3);
-}
+
   drawAxesCircle();
 
   // circle
@@ -425,11 +418,10 @@ ctx.setLineDash([]);
 
   // info readout
   info.innerHTML =
-  "θ = " + deg(theta).toFixed(1) + "° (" + theta.toFixed(3) + " rad)<br>" +
-  "sin(θ) = " + y.toFixed(3) + "<br>" +
-  "cos(θ) = " + x.toFixed(3) + "<br>" +
-  "tan(θ) = " + tanText;
-
+    `θ = ${deg(theta).toFixed(1)}° &nbsp; (${theta.toFixed(3)} rad)<br>` +
+    `sin(θ) = ${y.toFixed(3)}<br>` +
+    `cos(θ) = ${x.toFixed(3)}`;
+}
 
 // =====================
 // Interaction
