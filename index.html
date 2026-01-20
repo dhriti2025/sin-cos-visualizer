@@ -9,14 +9,14 @@
   .panel { margin: 12px 12px 0; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
   
   .panel label {
-  font-size: 18px;        /* was 14px */
+  font-size: 24px;        /* was 14px */
   color: #0a2540;
 }
 
 .panel input[type="number"] {
   width: 120px;
   padding: 6px 8px;
-  font-size: 18px;        /* was 14px */
+  font-size: 24px;        /* was 14px */
 }
 
   
@@ -35,7 +35,7 @@
 
 
   footer {
-  margin: 8px 12px 18px;
+  margin: 8px 12px 24px;
   font-size: 12px;
   color: #6b7280; /* neutral grey */
   text-align: right;
@@ -285,7 +285,7 @@ function drawThetaArc(thetaRad) {
   
   ctx.save();
 ctx.fillStyle = "#0a2540";
-ctx.font = "18px system-ui, sans-serif";   // was 16px via drawLabel
+ctx.font = "24px system-ui, sans-serif";   // was 16px via drawLabel
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
 ctx.fillText(`θ = ${deg(thetaRad).toFixed(1)}°`, tx, ty);
