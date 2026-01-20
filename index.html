@@ -301,8 +301,12 @@ function draw() {
 
   const x = Math.cos(theta);
   const y = Math.sin(theta);
-  const tanTheta = Math.abs(x) < 1e-6 ? Infinity : y / x;
-
+  let tanText;
+if (Math.abs(x) < 1e-6) {
+  tanText = "undefined";
+} else {
+  tanText = (y / x).toFixed(3);
+}
   drawAxesCircle();
 
   // circle
@@ -419,14 +423,10 @@ ctx.setLineDash([]);
 
   // info readout
   info.innerHTML =
-  `θ = ${deg(theta).toFixed(1)}° &nbsp; (${theta.toFixed(3)} rad)<br>` +
-  `sin(θ) = ${y.toFixed(3)}<br>` +
-  `cos(θ) = ${x.toFixed(3)}<br>` +
-  `tan(θ) = ${
-     Number.isFinite(tanTheta)
-       ? tanTheta.toFixed(3)
-       : "undefined"
-   }`;
+  "θ = " + deg(theta).toFixed(1) + "° (" + theta.toFixed(3) + " rad)<br>" +
+  "sin(θ) = " + y.toFixed(3) + "<br>" +
+  "cos(θ) = " + x.toFixed(3) + "<br>" +
+  "tan(θ) = " + tanText;
 
 
 // =====================
